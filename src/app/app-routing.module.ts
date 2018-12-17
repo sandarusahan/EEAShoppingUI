@@ -2,7 +2,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { HomeComponent } from './home/home.component';
-import { AddProductsComponent } from './add-products/add-products.component';
+import { AddProductsComponent } from './admin/add-products/add-products.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 const routes: Routes = [
-  {path: 'addProduct', component: AddProductsComponent},
+  {path: 'admin/products/new', component: AddProductsComponent},
   {path: '', component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'cart', component: CartComponent},

@@ -6,7 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddProductsComponent } from './add-products/add-products.component';
+import { AddProductsComponent } from './admin/add-products/add-products.component';
 import { HomeComponent } from './home/home.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { NavbarComponent } from './navbar/navbar.component';

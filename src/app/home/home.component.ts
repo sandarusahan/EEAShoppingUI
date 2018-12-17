@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.service.getProducts().subscribe(res =>{
       console.log("fetching products...");
       this.products = res;
-      console.log(this.products);
+      // console.log(this.products);
     }, err => {
       console.log("An error has occured during fethinh products from the server -> " + err);
     })

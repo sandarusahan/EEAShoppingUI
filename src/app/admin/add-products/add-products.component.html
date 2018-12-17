@@ -1,0 +1,44 @@
+<form id="addProdFrm" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <div class="row">
+      <div class="col-5">
+    <div class="form-group">
+    <label for="title">Product Name</label>
+    <input id="title" type="text" class="form-control" name="pName"  placeholder="Enter product name" ngModel #name="ngModel" required>
+  </div>
+  <div class="form-group">
+      <label for="category">Product Category</label>
+      <select id="category" type="text" class="form-control" name="pCategory"  placeholder="Enter product category" ngModel #category="ngModel" required>
+          <option *ngFor="let c of categories; let i = index" [value]="c.id">
+              {{c.name}}
+          </option>
+      </select>
+  </div>
+  <div class="form-group">
+      <label for="desc">Product Description</label>
+      <input id="desc" class="form-control" name="pDescription"  placeholder="Enter product description" ngModel #desc="ngModel" required>
+  </div>
+  <div class="form-group">
+      <label for="price">Product Price</label>
+      <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Rs.</span>
+          </div>
+      <input id="price" type="number" class="form-control" name="pPrice"  placeholder="Enter product price" ngModel #price="ngModel" required>
+      </div>
+
+  </div>
+  <div class="form-group">
+        <label for="qty">Product Quantity</label>
+        <input id="qty" type="number" class="form-control" name="pQty"  placeholder="Enter product quantity" ngModel #qty="ngModel" required>
+  </div>
+
+</div>
+<div class="col-7">
+  <div id="prodImg" class="">
+      <img type="text" [src]="imgUrl" (click)="onImgSelected($event)" class="rounded" placeholder="Enter product image url"  required/>
+  </div>
+</div>
+</div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
