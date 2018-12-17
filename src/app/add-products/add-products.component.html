@@ -1,28 +1,34 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <div class="form-group">
+<form id="addProdFrm" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <div class="row">
+      <div class="col-5">
+    <div class="form-group">
     <label >Product Name</label>
-    <input type="name" class="form-control" name="prodName"  placeholder="Enter product name" ngModel required #name="ngModel">
+    <input type="text" class="form-control" name="pName"  placeholder="Enter product name" ngModel required #name="ngModel">
   </div>
   <div class="form-group">
       <label >Product Category</label>
-      <input type="name" class="form-control" name="prodCat"  placeholder="Enter product category" ngModel required #category="ngModel">
+      <input type="text" class="form-control" name="pCategory"  placeholder="Enter product category" ngModel required #category="ngModel">
   </div>
   <div class="form-group">
       <label >Product Description</label>
-      <input type="name" class="form-control" name="prodDesc"  placeholder="Enter product description" ngModel required #desc="ngModel">
+      <input type="text" class="form-control" name="pDescription"  placeholder="Enter product description" ngModel required #desc="ngModel">
   </div>
   <div class="form-group">
       <label >Product Price</label>
-      <input type="number" class="form-control" name="prodPrice"  placeholder="Enter product price" ngModel required #price="ngModel">
+      <input type="number" class="form-control" name="pPrice"  placeholder="Enter product price" ngModel required #price="ngModel">
   </div>
   <div class="form-group">
         <label >Product Quantity</label>
-        <input type="number" class="form-control" name="prodQty"  placeholder="Enter product quantity" ngModel required #qty="ngModel">
+        <input type="number" class="form-control" name="pQty"  placeholder="Enter product quantity" ngModel required #qty="ngModel">
   </div>
-  <div class="form-group">
-      <label >Product Image</label>
-      <input type="url" class="form-control" name="prodImg"  placeholder="Enter product img url" ngModel required #img="ngModel">
+
+</div>
+<div class="col-7">
+  <div id="prodImg" class="text-center">
+      <img type="image" src="imgURL" (click)="onImgSelected($event)" class="rounded" placeholder="Enter product image url"  required/>
   </div>
+</div>
+</div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

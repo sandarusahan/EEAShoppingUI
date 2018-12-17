@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     
 
     this.service.getProducts().subscribe(res =>{
-      console.log("products are being fetching...");
+      console.log("fetching products...");
       this.products = res;
       console.log(this.products);
     }, err => {

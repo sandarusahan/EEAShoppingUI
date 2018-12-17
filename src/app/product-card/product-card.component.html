@@ -1,11 +1,10 @@
 <div class="card">
-    <!-- <img *ngIf="product.imageUrl" class="card-img-top" [src]="product.imageUrl" alt="{{ product.title }}"> -->
+    <img *ngIf="!product.pImg" class="card-img-top" src="..\..\assets\1534159621.png"/>
     <div class="card-body">
       <h4 class="card-title">{{ product.pName }}</h4>
       <p class="card-text">{{ product.pPrice | currency:'USD' }}</p>
     </div>
     <div class="card-footer">
-      <button class="btn btn-secondary btn-block">Add to Cart</button>
-      
+      <button id="acbtn" class="btn btn-secondary btn-block">Add to Cart</button>
     </div>
   </div>   
