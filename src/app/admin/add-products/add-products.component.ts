@@ -3,6 +3,7 @@ import { CategoryService } from './../../Services/category.service';
 import { Product } from '../../Model/Product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-products',
@@ -12,37 +13,27 @@ import { ProductService } from '../../Services/product.service';
 export class AddProductsComponent implements OnInit {
 
   categories : Category[] = [];
-  form;
+ 
 
-  constructor(private productService : ProductService, private categoryService : CategoryService) { }
+  constructor(private router : Router, private productService : ProductService, private categoryService : CategoryService) { }
 
-  imgUrl = "../../../assets/1534159621.png"
+  
 
   ngOnInit() {
     this.getCategories();
-    this.addImgElement();
   }
 
   public onSubmit(product:Product) {
     
     console.log(product);
-    return this.productService.addProduct(product).subscribe(product => console.log(product.pName + " sucessfully added"));
+    let prod = this.productService.addProduct(product);
+    this.router.navigate(['admin/products']);
+    console.log(prod);
 
+    return prod;
   }
 
-  public addImgElement() {
-    var form = document.createElement('input');
-    form.style.display = 'none';
-    form.type = 'file';
-    form.name = 'file';
-    document.getElementById('addProdFrm').appendChild(form);
-    this.form = form;
-  }
   
-  public onImgSelected(event) {
-    console.log(event);
-    this.form.click();
-  }
 
   public getCategories() {
     this.categoryService.getCategories().subscribe(res => {

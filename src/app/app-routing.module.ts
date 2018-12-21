@@ -21,7 +21,8 @@ const routes: Routes = [
   {path: 'order-sucess', component: OrderSucessComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin/orders', component: AdminOrdersComponent},
-  {path: 'admin/products', component: AdminProductsComponent}
+  {path: 'admin/products', component: AdminProductsComponent},
+  {path: 'admin/products/:id', component: AdminProductsComponent}
 ];
 
 @NgModule({

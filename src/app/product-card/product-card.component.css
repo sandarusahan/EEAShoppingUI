@@ -1,7 +1,6 @@
 .card {
     height: 350px;
     width: 200px;
-    margin: 10px;
 }
 .card:hover {
     height: 365px;
@@ -9,9 +8,9 @@
     margin: 0px;
 }
 
-.card-footer {
-    padding: 5px;
-}
+/* .card-footer {
+
+} */
 
 #acbtn:hover {
     background-color: green;

@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
 
   public getAllProducts() {
     
-
     this.service.getProducts().subscribe(res =>{
       console.log("fetching products...");
       this.products = res;
@@ -29,4 +28,5 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  
 }

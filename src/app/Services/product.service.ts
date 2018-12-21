@@ -1,5 +1,5 @@
 import { Product } from './../Model/Product';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
@@ -13,11 +13,16 @@ export class ProductService {
   url = "http://localhost:8080/product/";
 
   getProducts() {
-    return this.http.get<Product[]>(this.url+"getAll");
+    return this.http.get<Product[]>(this.url+"all");
   }
 
-  addProduct(product) {
-    console.log(product);
-    return this.http.post<Product>(this.url+"add", product);
+  addProduct(product: Product) {
+    return this.http.post<Product>(this.url+"add", product).
+            subscribe(product => {
+              console.log(product.pName + " sucessfully added")
+            },
+            err => {
+              console.log(product.pName + "Couldn't post"+ err)
+            });
   }
 }
