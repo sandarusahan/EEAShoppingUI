@@ -1,3 +1,5 @@
+import { CategoryService } from './../../Services/category.service';
+import { Category } from './../../Model/Category';
 import { Product } from './../../Model/Product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/Services/product.service';
@@ -11,7 +13,8 @@ export class AdminProductsComponent implements OnInit {
 
   // private products : Product[] = [];
   products$ 
-  constructor(private prodService : ProductService) { 
+  category : Category
+  constructor(private prodService : ProductService, private catService : CategoryService) { 
     this.products$ = this.prodService.getProducts();
     // this.prodService.getProducts().subscribe(prods => {
     //   this.products = prods;
@@ -19,6 +22,16 @@ export class AdminProductsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  addCategory() {
+    
+    var categoryName = prompt("Enter new category name");
+    console.log(categoryName);
+    if(categoryName!=null || categoryName != ""){
+      // this.category.name = categoryName;
+      this.catService.addCategory(categoryName);
+    }
   }
 
 }

@@ -15,4 +15,15 @@ export class CategoryService {
     return this.http.get<Category[]>(this.url+"all");
   }
 
+  addCategory(categoryName){
+    return this.http.post<Category>(this.url+"add", categoryName).
+    subscribe(category => {
+      console.log(category.name + " sucessfully added")
+    },
+    err => {
+      console.log(categoryName + "Couldn't post"+ err)
+    });
+
+  }
+
 }

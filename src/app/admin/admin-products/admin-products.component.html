@@ -1,6 +1,8 @@
-<p>
-<a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
-</p>
+
+<div id="btngrp" class="btn-group">
+    <button routerLink="/admin/products/new" class="btn btn-primary">New Product</button>
+    <button (click)="addCategory()" class="btn btn-primary">New Category</button>
+</div>
 
 <table class="table">
     <thead>
