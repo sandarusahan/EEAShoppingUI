@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class AddProductsComponent implements OnInit {
 
   categories : Category[] = [];
- 
+ selectedImg : File = null;
 
   constructor(private router : Router, private productService : ProductService, private categoryService : CategoryService) { }
 
@@ -43,5 +43,11 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
+  onImageSelect(event) {
+    this.selectedImg = <File>event.target.files[0];
+    const fd = new FormData();
+    fd.append('image', this.selectedImg, this.selectedImg.name)
+    console.log(this.selectedImg);
+  }
   
 }

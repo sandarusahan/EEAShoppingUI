@@ -1,3 +1,24 @@
-<p>
-  cart works!
-</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Units</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Total Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cartItem of cartItems$ | async">
+      <th scope="row">1</th>
+      <td>{{cartItem.name}}</td>
+      <td>
+        <input class="form-row col-3" type="number" min="1">
+      </td>
+      <td>@mdo</td>
+      <td>@mdo</td>
+      <td><a href="">Delete</a></td>
+    </tr>
+  </tbody>
+</table>

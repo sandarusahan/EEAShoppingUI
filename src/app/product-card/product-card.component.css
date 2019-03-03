@@ -3,9 +3,7 @@
     width: 200px;
 }
 .card:hover {
-    height: 365px;
-    width: 210px;
-    margin: 0px;
+    transform: scale(1.02)
 }
 
 /* .card-footer {

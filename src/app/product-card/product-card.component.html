@@ -1,10 +1,10 @@
-<div class="card">
+<div (click)="getProduct(product.pId)" class="card">
     <img class="card-img-top" [src]="product.pImg"/>
     <div class="card-body">
       <h4 class="card-title">{{ product.pName }}</h4>
       <p class="card-text">{{ product.pPrice | currency : 'LKR'}}</p>
     </div>
     <div class="card-footer">
-      <button id="acbtn" class="btn btn-secondary btn-block">Add to Cart</button>
+      <a id="acbtn" [routerLink]="['admin/products/', product.pId]" class="btn btn-secondary btn-block">Add to Cart</a>
     </div>
   </div>   

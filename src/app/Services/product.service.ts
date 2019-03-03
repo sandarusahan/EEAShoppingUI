@@ -11,9 +11,16 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   url = "http://localhost:8080/product/";
+  // prod : Product = null;
 
   getProducts() {
     return this.http.get<Product[]>(this.url+"all");
+  }
+
+  getProduct(pid)  {
+    
+    return this.http.get<Product>(this.url+pid);
+    
   }
 
   addProduct(product: Product) {

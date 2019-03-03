@@ -7,6 +7,6 @@ export interface Product {
     pDescription:String;
     pPrice: number;
     pQty:number;
-    pImg:String;
+    pImg:string;
 
 }

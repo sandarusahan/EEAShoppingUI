@@ -1,3 +1,4 @@
+import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -22,7 +23,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'admin/orders', component: AdminOrdersComponent},
   {path: 'admin/products', component: AdminProductsComponent},
-  {path: 'admin/products/:id', component: AdminProductsComponent}
+  {path: 'admin/products/:id', component: ProductDetailsComponent}
 ];
 
 @NgModule({

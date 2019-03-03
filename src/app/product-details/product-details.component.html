@@ -1,0 +1,16 @@
+
+<div *ngIf="product$ | async as product">
+  <h2>"{{ product.pName }}"</h2>
+  <div>
+    <label>Id: </label>{{ product.pId }}</div>
+  <div>
+    <label>Name: </label>
+    <img [src]=product.pImg alt="">
+    <!-- <input [(ngModel)]="hero.name" placeholder="name"/> -->
+  </div>
+  <p>
+    <!-- <button (click)="gotoHeroes(hero)">Back</button> -->
+  </p>
+  <button (click)="addToCart(product)">add to cart</button>
+</div>
+

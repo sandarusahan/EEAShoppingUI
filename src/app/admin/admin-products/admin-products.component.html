@@ -10,6 +10,7 @@
             <th>Name</th>
             <th>Price</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,9 @@
             <td>{{p.pPrice | currency:'LKR'}} </td>
             <td>
                 <a [routerLink] ="['/admin/products/', p.pId]">Edit</a>
+            </td>
+            <td>
+                <a *ngIf="expression">Edit</a>
             </td>
         </tr>
     </tbody>

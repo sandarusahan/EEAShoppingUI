@@ -47,10 +47,10 @@
                     </div>
             </div>
             <div class="form-group">
-                <label for="pImg">Image URL</label>
-                    <input id="img" type="url" class="form-control" name="pImg" placeholder="Enter product image URL" ngModel #img="ngModel" required>
+                <label for="pImg">Product Image</label>
+                    <input id="img" type="file" (change)="onImageSelect($event)" class="form-control-file" name="pImg" placeholder="Enter product image URL" ngModel #img="ngModel" required>
                     <div class="alert alert-danger" *ngIf="img.touched && img.invalid">
-                        Image is required !!
+                        Product image is required !!
                     </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -58,7 +58,7 @@
     </div>
     <div class="col-7">
         <div *ngIf="name.value" class="card" style="width : 20rem;">
-            <img class="card-img-top" [src]="img.value">
+            <img class="card-img-top" src= "https://photos.app.goo.gl/PLWyymP9r73P4TvT9">
             <div class="card-body">
                 <h4 class="card-title">{{name.value}}</h4>
                 <p *ngIf="price.value" class="card-text">{{price.value | currency : 'LKR'}}</p>
