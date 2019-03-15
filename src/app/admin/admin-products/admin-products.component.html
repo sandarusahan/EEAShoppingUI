@@ -1,8 +1,14 @@
-
+<div class="container">
 <div id="btngrp" class="btn-group">
     <button routerLink="/admin/products/new" class="btn btn-primary">New Product</button>
     <button (click)="addCategory()" class="btn btn-primary">New Category</button>
 </div>
+<div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fas fa-search"></i></span>
+    </div>
+    <input #query (keyup)="filter(query.value)" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Search for products...">
+  </div>
 
 <table class="table">
     <thead>
@@ -14,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of products$ | async">
+        <tr *ngFor="let p of filteredProducts">
             <td>{{p.pName}}</td>
             <td>{{p.pPrice | currency:'LKR'}} </td>
             <td>
@@ -26,3 +32,4 @@
         </tr>
     </tbody>
 </table>
+</div>

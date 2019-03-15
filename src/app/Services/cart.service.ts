@@ -25,10 +25,10 @@ export class CartService {
   addItemToCart(cartItem:Cart){
     return this.http.post<Cart>(this.url+"add", cartItem).
     subscribe(cartItem => {
-      console.log(cartItem.pid + " sucessfully added")
+      console.log(cartItem.name + " sucessfully added")
     },
     err => {
-      console.log(cartItem.pid + " Couldn't post"+ err)
+      console.log(cartItem.name + " Couldn't post"+ err)
     });
 
   }

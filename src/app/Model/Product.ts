@@ -1,10 +1,10 @@
 
 
 export interface Product {
-    pId: String;
-    pName:String;
-    pCategory:String;
-    pDescription:String;
+    pId: string;
+    pName:string;
+    pCategory:string;
+    pDescription:string;
     pPrice: number;
     pQty:number;
     pImg:string;

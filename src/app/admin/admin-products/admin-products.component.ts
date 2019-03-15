@@ -1,29 +1,37 @@
 import { CategoryService } from './../../Services/category.service';
 import { Category } from './../../Model/Category';
 import { Product } from './../../Model/Product';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from 'src/app/Services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
-
-  // private products : Product[] = [];
-  products$ 
+export class AdminProductsComponent implements OnInit, OnDestroy {
+  
+  products : Product[] 
+  filteredProducts : Product[]
   category : Category
+  subscription : Subscription
+
   constructor(private prodService : ProductService, private catService : CategoryService) { 
-    this.products$ = this.prodService.getProducts();
-    // this.prodService.getProducts().subscribe(prods => {
-    //   this.products = prods;
-    // })
+   this.subscription = this.prodService.getProducts().subscribe(products => {
+      this.filteredProducts = this.products = products;
+    }, err => {
+      console.log(err)
+    });
+    
   }
 
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
   addCategory() {
     
     var categoryName = prompt("Enter new category name");
@@ -32,6 +40,11 @@ export class AdminProductsComponent implements OnInit {
       // this.category.name = categoryName;
       this.catService.addCategory(categoryName);
     }
+  }
+
+  filter(query:string){
+    // console.log(query);
+    this.filteredProducts = (query) ? this.products.filter(p=>p.pName.toLowerCase().includes(query.toLowerCase()) || p.pDescription.toLowerCase().includes(query.toLowerCase())) : this.products;
   }
 
 }

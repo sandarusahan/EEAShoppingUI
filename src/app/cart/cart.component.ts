@@ -10,12 +10,16 @@ import { Observable } from 'rxjs';
 })
 export class CartComponent implements OnInit {
 
-  cartItems$ : Observable<Cart[]>
+  userId = "user 01"
+  cartItems : Cart[];
   constructor(private cartService : CartService) { }
 
   ngOnInit() {
-    this.cartItems$ = this.cartService.getCartItems()
-    console.log(this.cartItems$)
+    this.cartService.getCartItems().subscribe(cartItems => {
+      this.cartItems = cartItems
+      // this.cartItems = (this.userId) ? this.products.filter(p=>p.pName.toLowerCase().includes(query.toLowerCase()) || p.pDescription.toLowerCase().includes(query.toLowerCase())) : this.products;
+    })
+    
   }
 
 }

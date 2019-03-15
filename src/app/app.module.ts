@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Cloudinary } from 'cloudinary-core';
+import { CloudinaryConfiguration, CloudinaryModule } from '@cloudinary/angular-5.x';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +45,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'apiit-eea' } as CloudinaryConfiguration),
     NgbModule.forRoot()
   ],
   providers: [],

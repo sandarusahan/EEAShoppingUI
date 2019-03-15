@@ -58,7 +58,7 @@
     </div>
     <div class="col-7">
         <div *ngIf="name.value" class="card" style="width : 20rem;">
-            <img class="card-img-top" src= "https://photos.app.goo.gl/PLWyymP9r73P4TvT9">
+            <img class="card-img-top" [src]= "pImg.value">
             <div class="card-body">
                 <h4 class="card-title">{{name.value}}</h4>
                 <p *ngIf="price.value" class="card-text">{{price.value | currency : 'LKR'}}</p>

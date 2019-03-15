@@ -34,14 +34,15 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product:Product) {
-    var cart = <Cart>{};
-    cart['amount'] = 10;
-    cart['pid'] = product.pId;
-    cart['uid'] = "user 01";
-    // this.cart.amount = 10;//hard coded
-    // this.cart.pid = product.pId;
-    // this.cart.uid = "user 01";
-    console.log(cart);
+    
+    let cart =<Cart> new Object();
+    cart.pid = product.pId;
+    cart.uid = "user 01";
+    cart.amount = 10;
+    cart.name = product.pName;
+    cart.price = product.pPrice;
+  
+    console.log(cart.name);
 
     this.cartService.addItemToCart(cart);
   }

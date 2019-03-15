@@ -1,7 +1,10 @@
+import { Product } from './Product';
 export interface Cart {
-    id : String;
-    pid : String;
+    id : string;
+    pid : string;
     amount : number;
-    uid : String;
+    uid : string;
+    price : number;
+    name : string;
     
 }

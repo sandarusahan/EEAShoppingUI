@@ -1,3 +1,5 @@
+import { Category } from './../Model/Category';
+import { CategoryService } from './../Services/category.service';
 import { ProductService } from './../Services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Model/Product';
@@ -9,12 +11,16 @@ import { Product } from '../Model/Product';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private service : ProductService) { }
+  constructor(private service : ProductService, private catService : CategoryService) { }
 
   products : Product[] = [];
+  contegories : Category[];
 
   ngOnInit() {
     this.getAllProducts();
+    this.catService.getCategories().subscribe(categories => {
+      // console.log(categories[2].name)
+      this.contegories = categories})
   }
 
   public getAllProducts() {

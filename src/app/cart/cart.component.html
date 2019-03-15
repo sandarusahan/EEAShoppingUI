@@ -10,15 +10,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cartItem of cartItems$ | async">
-      <th scope="row">1</th>
+    <tr *ngFor="let cartItem of cartItems; let i = index">
+      <th scope="row">{{i+1}}</th>
       <td>{{cartItem.name}}</td>
       <td>
-        <input class="form-row col-3" type="number" min="1">
+        <input class="form-row col-3" type="number" value="{{cartItem.amount}}" min="1">
       </td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+      <td>{{cartItem.price}}</td>
+      <td>{{cartItem.price*cartItem.amount}}</td>
       <td><a href="">Delete</a></td>
     </tr>
   </tbody>
 </table>
+
+<button class="btn btn-primary">Checkout</button>

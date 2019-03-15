@@ -24,10 +24,10 @@ export class ProductCardComponent implements OnInit {
      console.log("product");
      console.log(productid);
     this.productService.getProduct(productid).subscribe(prod => {
-      console.log(prod +"hooooo")
+      // console.log(prod +"hooooo")
       this.prod = prod;
       this.router.navigate(['admin/products', prod.pId])
-    }, err => {
+    }, err => { 
       console.log(err);
     });
     

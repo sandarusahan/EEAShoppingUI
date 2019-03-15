@@ -1,15 +1,23 @@
 .card {
-    height: 350px;
-    width: 200px;
+    height: 37vh;
+    width: 10vw;
+    margin-bottom: 1.5vh;
 }
 .card:hover {
     transform: scale(1.02)
 }
 
-/* .card-footer {
-
-} */
+.card-img-top{
+    height: 15vh;
+    width: 10vw;
+}
 
 #acbtn:hover {
     background-color: green;
 }
+
+@media only screen and (max-width: 600px) {
+    .card {
+      background-color: lightblue;
+    }
+  }
