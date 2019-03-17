@@ -1,3 +1,4 @@
+import { ImagesService } from './../../Services/images.service';
 import { Category } from './../../Model/Category';
 import { CategoryService } from './../../Services/category.service';
 import { Product } from '../../Model/Product';
@@ -15,7 +16,7 @@ export class AddProductsComponent implements OnInit {
   categories : Category[] = [];
  selectedImg : File = null;
 
-  constructor(private router : Router, private productService : ProductService, private categoryService : CategoryService) { }
+  constructor(private router : Router, private productService : ProductService, private categoryService : CategoryService, private imagesService : ImagesService) { }
 
   
 
@@ -43,12 +44,15 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
-  onImageSelect(event) {
-    this.selectedImg = <File>event.target.files[0];
-    const fd = new FormData();
-    fd.append('image', this.selectedImg, this.selectedImg.name)
-    console.log(this.selectedImg);
-    this.uploadFile(this.selectedImg)
+  onImageSelect(img) {
+    // this.selectedImg = <File>event.target.files[0];
+    // const fd = new FormData();
+    // fd.append('image', this.selectedImg, this.selectedImg.name)
+    console.log(img);
+    this.imagesService.uploadAnImage(img).subscribe(res => {
+      console.log(res);
+    })
+    // this.uploadFile(this.selectedImg)
   }
   
   uploadFile(file) {

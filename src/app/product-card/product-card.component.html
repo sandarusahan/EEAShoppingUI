@@ -1,12 +1,12 @@
-<!-- <div class="card-deck"> -->
-<div (click)="getProduct(product.pId)" [routerLink]="['admin/products/', product.pId]" class="card">
+<div class="card-deck">
+<div (click)="gotoProduct(product.pId)" [routerLink]="['products/', product.pId]" class="card">
     <img class="card-img-top" [src]="product.pImg"/>
     <div class="card-body">
       <h4 class="card-title">{{ product.pName }}</h4>
       <p class="card-text">{{ product.pPrice | currency : 'LKR'}}</p>
     </div>
     <div class="card-footer">
-      <a id="acbtn" class="btn btn-secondary btn-block">Add to Cart</a>
+      <a id="acbtn" (click)="addToCart(product)" class="btn btn-secondary btn-block">Add to Cart</a>
     </div>
   </div>  
-<!-- </div> -->
+</div>

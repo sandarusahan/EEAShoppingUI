@@ -18,9 +18,9 @@
       </td>
       <td>{{cartItem.price}}</td>
       <td>{{cartItem.price*cartItem.amount}}</td>
-      <td><a href="">Delete</a></td>
+      <td><a class="btn btn-danger" (click)="deleteCartItem(cartItem.cid)">Delete</a></td>
     </tr>
   </tbody>
 </table>
 
-<button class="btn btn-primary">Checkout</button>
+<button class="btn btn-primary" id="checkoutbtn">Checkout</button>

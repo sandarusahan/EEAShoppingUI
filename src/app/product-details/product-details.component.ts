@@ -13,9 +13,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  product$ : Observable<Product>
-  // product : Product;
-  product : Product;
+  product : Product
+ 
 
   cart : Cart = <Cart>{};
 
@@ -27,7 +26,9 @@ export class ProductDetailsComponent implements OnInit {
 
     this.route.paramMap.subscribe(param => {
       let id = param.get('id');
-      this.product$ = this.prodcutService.getProduct(id);
+      this.prodcutService.getProduct(id).subscribe(product => {
+        this.product = product;
+      })
     })
     
 
@@ -42,8 +43,6 @@ export class ProductDetailsComponent implements OnInit {
     cart.name = product.pName;
     cart.price = product.pPrice;
   
-    console.log(cart.name);
-
     this.cartService.addItemToCart(cart);
   }
 }

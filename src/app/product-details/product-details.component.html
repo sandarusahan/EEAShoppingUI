@@ -1,16 +1,20 @@
+<div *ngIf="product">
+  <!-- <div class="container"> -->
+  <div class="row">
+    <div class="col-8">
+      <img [src]=product.pImg alt="Product image" class="detail-img">
 
-<div *ngIf="product$ | async as product">
-  <h2>"{{ product.pName }}"</h2>
-  <div>
-    <label>Id: </label>{{ product.pId }}</div>
-  <div>
-    <label>{{product.pDescription}} </label>
-    <img [src]=product.pImg alt="Product image">
-    <!-- <input [(ngModel)]="hero.name" placeholder="name"/> -->
+    </div>
+    <div class="col-3.5">
+      <h2>{{ product.pName }}</h2>
+      <div class="container">
+
+        <p>{{product.pDescription}} </p>
+        <h6>Rs. {{product.pPrice}}</h6>
+        <button class="btn btn-success" (click)="addToCart(product)">Add To Cart</button>
+
+      </div>
+    </div>
+    <!-- </div> -->
   </div>
-  <p>
-    <!-- <button (click)="gotoHeroes(hero)">Back</button> -->
-  </p>
-  <button (click)="addToCart(product)">add to cart</button>
 </div>
-

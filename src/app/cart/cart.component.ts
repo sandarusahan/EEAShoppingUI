@@ -22,4 +22,9 @@ export class CartComponent implements OnInit {
     
   }
 
+  deleteCartItem(pid){
+    this.cartService.deleteCartItem(pid).subscribe(res => this.cartItems = <Cart[]>res);
+    
+  }
+
 }

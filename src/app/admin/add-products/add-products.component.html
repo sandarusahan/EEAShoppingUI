@@ -48,7 +48,7 @@
             </div>
             <div class="form-group">
                 <label for="pImg">Product Image</label>
-                    <input id="img" type="file" (change)="onImageSelect($event)" class="form-control-file" name="pImg" placeholder="Enter product image URL" ngModel #img="ngModel" required>
+                    <input id="img" type="file" (change)="onImageSelect(img)" class="form-control-file" name="pImg" placeholder="Enter product image URL" ngModel #img="ngModel" required>
                     <div class="alert alert-danger" *ngIf="img.touched && img.invalid">
                         Product image is required !!
                     </div>
