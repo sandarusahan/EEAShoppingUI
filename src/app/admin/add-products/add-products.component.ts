@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
 export class AddProductsComponent implements OnInit {
 
   categories : Category[] = [];
- selectedImg : File = null;
+  selectedImg : File = null;
+
 
   constructor(private router : Router, private productService : ProductService, private categoryService : CategoryService, private imagesService : ImagesService) { }
 
@@ -96,4 +97,8 @@ export class AddProductsComponent implements OnInit {
     xhr.send(fd);
     
   }
+
+  // uploadImage() {
+  //   let reqId = MediaManager
+  // }
 }

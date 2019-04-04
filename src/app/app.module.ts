@@ -48,7 +48,9 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'apiit-eea' } as CloudinaryConfiguration),
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    HomeComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

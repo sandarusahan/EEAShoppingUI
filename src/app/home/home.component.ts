@@ -1,7 +1,8 @@
+import { DataService } from './../Services/data.service';
 import { Category } from './../Model/Category';
 import { CategoryService } from './../Services/category.service';
 import { ProductService } from './../Services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { Product } from '../Model/Product';
 
 @Component({
@@ -10,11 +11,14 @@ import { Product } from '../Model/Product';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
 
-  constructor(private service : ProductService, private catService : CategoryService) { }
+  constructor(private service : ProductService, private catService : CategoryService, private dataService : DataService) { }
 
   products : Product[] = [];
+  filteredProducts : Product[]
   contegories : Category[];
+  query : string;
 
   ngOnInit() {
     this.getAllProducts();
@@ -27,12 +31,20 @@ export class HomeComponent implements OnInit {
     
     this.service.getProducts().subscribe(res =>{
       console.log("fetching products...");
-      this.products = res;
+       this.filteredProducts = this.products = res;
       // console.log(this.products);
     }, err => {
       console.log("An error has occured during fethinh products from the server -> " + err);
     })
   }
 
+  filter(query:string) {
+      this.filteredProducts  = (query) ? this.products.filter(p=>{
+        return p.pName.toLowerCase().includes(query.toLowerCase()) || p.pDescription.toLowerCase().includes(query.toLowerCase())
+      }) : this.products;
+    // })
+      
+  }
+  
   
 }

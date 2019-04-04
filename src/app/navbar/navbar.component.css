@@ -1,3 +1,7 @@
 .dropdown-toggle {
 cursor: pointer;
 }
+
+nav {
+    width: 100%
+}
