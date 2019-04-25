@@ -3,7 +3,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Product Name</th>
-      <th scope="col">Units</th>
+      <th scope="col">Quatity</th>
       <th scope="col">Unit Price</th>
       <th scope="col">Total Price</th>
       <th scope="col"></th>
@@ -14,7 +14,7 @@
       <th scope="row">{{i+1}}</th>
       <td>{{cartItem.name}}</td>
       <td>
-        <input class="form-row col-3" type="number" value="{{cartItem.amount}}" min="1">
+        <input class="form-row col-3 form-control" type="number" value="{{cartItem.amount}}" min="1" (change)="onQtyChange($event.target.value, i)">
       </td>
       <td>{{cartItem.price}}</td>
       <td>{{cartItem.price*cartItem.amount}}</td>
@@ -23,4 +23,6 @@
   </tbody>
 </table>
 
-<button class="btn btn-primary" id="checkoutbtn">Checkout</button>
+<div class="container">
+<button class="btn btn-primary btn-lg btn-block" routerLink="checkout" id="checkoutbtn">Checkout : LKR {{total}}</button>
+</div>

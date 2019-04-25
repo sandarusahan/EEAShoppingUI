@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   filteredProducts : Product[]
   contegories : Category[];
   query : string;
+  ActiveCat : string;
 
   ngOnInit() {
     this.getAllProducts();
@@ -46,5 +47,16 @@ export class HomeComponent implements OnInit {
       
   }
   
+  filterProducts(cid) {
+    this.ActiveCat = cid;
+    if(cid == "-1"){
+      this.getAllProducts();
+    }else
+    {
+      this.service.getProductsByCategory(cid).subscribe(res => {
+      this.filteredProducts = res;
+    })
+  }
+  }
   
 }

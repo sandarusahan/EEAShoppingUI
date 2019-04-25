@@ -9,33 +9,32 @@ export class CartService {
   cartItems$;
   constructor(private http: HttpClient) {}
 
-  url = "http://localhost:8080/cart/";
+  url = "http://localhost:8080/user/cart/";
 
   getCartItems() {
     return this.http.get < Cart[] > (this.url + "all") //filter from user
     
   }
 
-  addItemToCart(cartItemToAdd: Cart) {
+  // addItemToCart(cartItemToAdd: Cart) {
 
-    let item: Cart = null;
-    this.getCartItems().subscribe(cartItems => {
-      if (cartItems.length != 0) {
-        cartItems.forEach(cartItem => {
-          if (cartItem.name == cartItemToAdd.name) {
-            this.updateQty(cartItem, cartItemToAdd.amount)
-          } else {
-            this.addToCart(cartItemToAdd)
-          }
+  //   this.getCartItems().subscribe(cartItems => {
+  //     if (cartItems.length != 0) {
+  //       cartItems.forEach(cartItem => {
+  //         if (cartItem.name == cartItemToAdd.name) {
+  //           this.updateQty(cartItem, cartItemToAdd.amount)
+  //         } else {
+  //           this.addToCart(cartItemToAdd)
+  //         }
 
-        });
-      }else{
-        this.addToCart(cartItemToAdd)
-      }
-    });
+  //       });
+  //     }else{
+  //       this.addToCart(cartItemToAdd)
+  //     }
+  //   });
 
 
-  }
+  // }
 
   addToCart(cartItem:Cart) {
     return this.http.post < Cart > (this.url + "add", cartItem).
@@ -55,5 +54,11 @@ export class CartService {
 
   deleteCartItem(id: string){
     return this.http.delete(this.url+id);
+  }
+
+  addItemsToCart(cartItems : Cart[]) {
+
+    return this.http.post<Cart> (this.url+"add/items", cartItems);
+
   }
 }

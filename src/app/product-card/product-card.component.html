@@ -6,7 +6,7 @@
       <p class="card-text">{{ product.pPrice | currency : 'LKR'}}</p>
     </div>
     <div class="card-footer">
-      <a id="acbtn" (click)="addToCart(product)" class="btn btn-secondary btn-block">Add to Cart</a>
+      <a id="acbtn" (click)="addToCart(product); $event.stopPropagation()" class="btn btn-secondary btn-block">Add to Cart</a>
     </div>
   </div>  
 </div>

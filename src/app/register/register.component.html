@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <h3 class="mb-0">Register</h3>
+      </div>
+      <div class="card-body">
+        <form id="registerUser" #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div class="form-group">
+              <label for="fName">First Name</label>
+              <input id="fName" type="text" class="form-control" name="fName"  placeholder="Enter First name" ngModel #fname="ngModel" required>
+              <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid">
+                  First name is required !!
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="lName">Last Name</label>
+            <input id="lName" type="text" class="form-control" name="lName"  placeholder="Enter Last name" ngModel #lname="ngModel" required>
+            <div class="alert alert-danger" *ngIf="lname.touched && lname.invalid">
+                Last name is required !!
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" class="form-control" name="email" (blur)="onEmailBlur(email.viewModel)" placeholder="Enter email address" ngModel #email="ngModel" required>
+            <div class="alert alert-warning" *ngIf="!isEmailValid">{{errMsg}}</div>
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                Your email address works as the username hence email is required !!
+                
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" class="form-control" name="password"  placeholder="Enter a secured password" ngModel #password="ngModel" required>
+            <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+                Password is required !!
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" type="text" class="form-control" name="gender"  placeholder="Enter gender" ngModel #gender="ngModel" required>
+                <option value="Not Specified">Rather not to specify</option>  
+                <option value="Male">Male</option>  
+                <option value="Female">Female</option>  
+                  
+              </select> 
+              <div class="alert alert-danger" *ngIf="gender.touched && gender.invalid">
+                      Gender is required !!
+              </div>
+          </div>
+          <div class="form-group">
+                  <label for="contact">Contact Number</label>
+                  <input id="contact" type="tel" pattern="[0-9]{10}" class="form-control" name="contact"  placeholder="Enter Contact number" ngModel #contact="ngModel" required>
+                  <div class="alert alert-danger" *ngIf="contact.touched && contact.invalid">
+                      Invalid contact number !!
+                  </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input id="address" type="address" class="form-control" name="address"  placeholder="Enter address" ngModel #address="ngModel">
+            <!-- <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+                Address is required !!
+            </div> -->
+          </div>
+          <div class="form-group">
+              <label for="profImg">Profile Image</label>
+                  <input id="image" type="text" class="form-control" name="image" placeholder="Enter profile image URL" ngModel #image="ngModel">
+                  <!-- <div class="alert alert-danger" *ngIf="image.touched && image.invalid">
+                      Product image is required !!
+                  </div> -->
+          </div>
+          <button type="submit" [disabled]="form.invalid && isEmailExist" class="btn btn-primary">Register</button>
+          <br>
+          <div class="alert alert-danger" *ngIf="formInvalid">Form inpunts invalid</div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

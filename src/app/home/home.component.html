@@ -11,11 +11,14 @@
 
 <div class="row">
   <div class="col-3">
-    <ul class="list-group">
-      <li *ngFor="let c of contegories" class="list-group-item">
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" [class.active]="ActiveCat === -1" (click)="filterProducts(-1)">
+            All
+          </a>
+      <a *ngFor="let c of contegories" class="list-group-item list-group-item-action" [class.active]="c.id === ActiveCat" (click)="filterProducts(c.id)">
         {{c.name}}
-      </li>
-    </ul>
+      </a>
+    </div>
   </div>
   <div class="col">
     <div class="row">

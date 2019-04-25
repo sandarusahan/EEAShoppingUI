@@ -1,3 +1,5 @@
+import { Cart } from './../Model/Cart';
+import { CartService } from './../Services/cart.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  cartList : Cart[]
+  cartListLength
+  total = 0;
 
-  ngOnInit() {
+  constructor(private cartService : CartService) { 
+    this.cartService.getCartItems().subscribe(res => {
+      this.cartList = res;
+      this.cartListLength = this.cartList.length;
+      this.calcTotal();
+    })
   }
 
+  ngOnInit() {
+        
+  }
+
+  calcTotal() {
+    for(let cartItem of this.cartList){
+      this.total = cartItem.amount*cartItem.price + this.total;
+    }
+  }
 }

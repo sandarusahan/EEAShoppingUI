@@ -12,7 +12,7 @@ export class CategoryService {
   url = "http://localhost:8080/category/";
 
   getCategories() {
-    return this.http.get<Category[]>(this.url+"all");
+    return this.http.get<Category[]>(this.url+"public/all");
   }
 
   addCategory(categoryName){

@@ -14,7 +14,11 @@ export class ProductService {
   // prod : Product = null;
 
   getProducts() {
-    return this.http.get<Product[]>(this.url+"all");
+    return this.http.get<Product[]>(this.url+"public/all");
+  }
+
+  getProductsByCategory(catId){
+    return this.http.get<Product[]>(this.url+"public/category/"+catId)
   }
 
   getProduct(pid)  {
@@ -24,7 +28,7 @@ export class ProductService {
   }
 
   addProduct(product: Product) {
-    return this.http.post<Product>(this.url+"add", product).
+    return this.http.post<Product>(this.url+"admin/add", product).
             subscribe(product => {
               console.log(product.pName + " sucessfully added")
             },

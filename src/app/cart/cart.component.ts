@@ -12,12 +12,15 @@ export class CartComponent implements OnInit {
 
   userId = "user 01"
   cartItems : Cart[];
+  total = 0
   constructor(private cartService : CartService) { }
 
   ngOnInit() {
     this.cartService.getCartItems().subscribe(cartItems => {
       this.cartItems = cartItems
       // this.cartItems = (this.userId) ? this.products.filter(p=>p.pName.toLowerCase().includes(query.toLowerCase()) || p.pDescription.toLowerCase().includes(query.toLowerCase())) : this.products;
+
+      this.calcTotal();
     })
     
   }
@@ -26,5 +29,24 @@ export class CartComponent implements OnInit {
     this.cartService.deleteCartItem(pid).subscribe(res => this.cartItems = <Cart[]>res);
     
   }
+
+  onQtyChange(units, i){
+    if(units != null)
+    this.cartItems[i].amount = units;
+    this.total = 0
+    this.cartService.addItemsToCart(this.cartItems).subscribe(res => {
+      console.log(res);
+    })
+    this.calcTotal();
+  }
+
+  calcTotal() {
+    for(let cartItem of this.cartItems){
+      this.total = cartItem.amount*cartItem.price + this.total;
+    }
+  }
+
+  
+  
 
 }

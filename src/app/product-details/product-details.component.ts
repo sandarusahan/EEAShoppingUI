@@ -43,6 +43,6 @@ export class ProductDetailsComponent implements OnInit {
     cart.name = product.pName;
     cart.price = product.pPrice;
   
-    this.cartService.addItemToCart(cart);
+    this.cartService.addToCart(cart);
   }
 }
