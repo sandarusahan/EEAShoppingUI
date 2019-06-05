@@ -12,12 +12,16 @@ import { Subscription } from 'rxjs';
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   
-  products : Product[] 
-  filteredProducts : Product[]
+  products : Product[] =[]
+  filteredProducts : Product[] = []
   category : Category
   subscription : Subscription
   categories$ 
   constructor(private prodService : ProductService, private catService : CategoryService) { 
+   
+  }
+
+  ngOnInit() {
     this.subscription = this.prodService.getProducts().subscribe(products => {
       this.filteredProducts = this.products = products;
     }, err => {
@@ -25,9 +29,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     });
     
     this.categories$ = this.catService.getCategories();
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {
@@ -46,6 +47,14 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   filter(query:string){
     // console.log(query);
     this.filteredProducts = (query) ? this.products.filter(p=>p.pName.toLowerCase().includes(query.toLowerCase()) || p.pDescription.toLowerCase().includes(query.toLowerCase())) : this.products;
+  }
+
+  deleteProduct(pid){
+    console.log(pid)
+    this.prodService.deleteProduct(pid).subscribe(res => {
+      console.log(res);
+      this.ngOnInit();
+    })
   }
 
 }

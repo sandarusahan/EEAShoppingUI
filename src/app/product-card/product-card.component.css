@@ -18,8 +18,12 @@
     background-color: green;
 }
 
-@media only screen and (max-width: 600px) {
-    .card {
-      background-color: lightblue;
-    }
-  }
+.promocard {
+    background-color: rgba(62, 201, 235, 0.082);
+    
+}
+
+.promoacbtn{
+    background-color: rgb(191, 199, 164)
+}
+

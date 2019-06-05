@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Cart } from '../Model/Cart';
 
 @Injectable({
@@ -7,58 +7,43 @@ import { Cart } from '../Model/Cart';
 })
 export class CartService {
   cartItems$;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  url = "http://localhost:8080/user/cart/";
+  url = "http://localhost:8080/auth/cart/";
+
+  email = sessionStorage.getItem("email")
+  password = sessionStorage.getItem("password")
 
   getCartItems() {
-    return this.http.get < Cart[] > (this.url + "all") //filter from user
-    
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
+    return this.http.get<Cart[]>(this.url + "uid/"+ this.email , {headers}) //filter from user
+
   }
 
-  // addItemToCart(cartItemToAdd: Cart) {
 
-  //   this.getCartItems().subscribe(cartItems => {
-  //     if (cartItems.length != 0) {
-  //       cartItems.forEach(cartItem => {
-  //         if (cartItem.name == cartItemToAdd.name) {
-  //           this.updateQty(cartItem, cartItemToAdd.amount)
-  //         } else {
-  //           this.addToCart(cartItemToAdd)
-  //         }
-
-  //       });
-  //     }else{
-  //       this.addToCart(cartItemToAdd)
-  //     }
-  //   });
-
-
-  // }
-
-  addToCart(cartItem:Cart) {
-    return this.http.post < Cart > (this.url + "add", cartItem).
-    subscribe(cartItem => {
-        console.log(cartItem.name + " sucessfully added")
-      },
-      err => {
-        console.log(cartItem.name + " Couldn't post" + err)
-      });
+  addToCart(cartItem: Cart) {
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
+    return this.http.post<Cart>(this.url + "add", cartItem, {headers})      
   }
 
   updateQty(item: Cart, qty: number) {
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
+
     item.amount = item.amount + qty;
     console.log(item)
-    return this.http.put <Cart> (this.url, item).subscribe(item => console.log(item.amount))
+    return this.http.put<Cart>(this.url, item, {headers}).subscribe(item => console.log(item.amount))
   }
 
-  deleteCartItem(id: string){
-    return this.http.delete(this.url+id);
+  deleteCartItem(id: string) {
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
+
+    return this.http.delete(this.url + id, {headers});
   }
 
-  addItemsToCart(cartItems : Cart[]) {
+  addItemsToCart(cartItems: Cart[]) {
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
 
-    return this.http.post<Cart> (this.url+"add/items", cartItems);
+    return this.http.post<Cart>(this.url + "add/items", cartItems, {headers});
 
   }
 }

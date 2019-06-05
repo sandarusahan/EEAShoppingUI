@@ -32,7 +32,7 @@
                 <a [routerLink] ="['/admin/products/', p.pId]" class="btn btn-outline-info">Edit</a>
             </td>
             <td>
-                <a class="btn btn-outline-danger">Delete</a>
+                <a class="btn btn-outline-danger" (click)="deleteProduct(p.pId)">Delete</a>
             </td>
         </tr>
     </tbody>

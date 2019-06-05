@@ -14,8 +14,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path: 'admin/products/new', component: AddProductsComponent},
-  {path: '', component: HomeComponent},
+  // {path: 'admin/products/new', component: AddProductsComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'cart', component: CartComponent},
   {path: 'cart/checkout', component: CheckoutComponent},
@@ -24,6 +24,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'admin/orders', component: AdminOrdersComponent},
   {path: 'admin/products', component: AdminProductsComponent},
+  {path: 'admin/products/:pid', component: AddProductsComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'products/:id', component: ProductDetailsComponent}
 ];

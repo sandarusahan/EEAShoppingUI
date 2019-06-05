@@ -1,10 +1,12 @@
+// import { Product } from './../../Model/Product';
 import { ImagesService } from './../../Services/images.service';
 import { Category } from './../../Model/Category';
 import { CategoryService } from './../../Services/category.service';
 import { Product } from '../../Model/Product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-add-products',
@@ -15,27 +17,55 @@ export class AddProductsComponent implements OnInit {
 
   categories : Category[] = [];
   selectedImg : File = null;
+  preview:boolean = false;
+  product:Product =<Product> new Object();
 
-
-  constructor(private router : Router, private productService : ProductService, private categoryService : CategoryService, private imagesService : ImagesService) { }
+  constructor(private router : Router, private route: ActivatedRoute, private productService : ProductService, private categoryService : CategoryService, private imagesService : ImagesService) { }
 
   
 
   ngOnInit() {
+    this.route.paramMap.subscribe(param => {
+      let id = param.get("pid");
+      if(id != null || id != ""){
+        if(id == "new"){
+          this.product = <Product> new Object();
+        }else{
+          this.productService.getProduct(id).subscribe(product => {
+            this.product = product;
+          })
+        }
+      }
+    })
     this.getCategories();
   }
 
-  public onSubmit(product:Product) {
+  public onSubmit() {
     
-    console.log(product);
-    let prod = this.productService.addProduct(product);
-    this.router.navigate(['admin/products']);
-    console.log(prod);
+    if(this.product!=null){
+      console.log(this.product);
+      let prod = this.productService.addProduct(this.product).subscribe(product => {
+        console.log(product.pName + " sucessfully added")
+      this.router.navigate(['admin/products']);
 
-    return prod;
+      },
+      err => {
+        console.log(this.product.pName + "Couldn't post"+ err)
+      });
+      console.log(prod);
+
+      return prod;
+    }
+    
   }
 
-  
+  previewCard(form){
+    if(form != null){
+      this.preview = true;
+    this.product = form;
+    }
+    
+  }
 
   public getCategories() {
     this.categoryService.getCategories().subscribe(res => {

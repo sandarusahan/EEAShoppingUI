@@ -1,31 +1,25 @@
 <div class="row">
     <div class="col-5">
-        <form id="addProdFrm" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+        <form id="addProdFrm" #f="ngForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="title">Product Name</label>
-                <input id="title" type="text" class="form-control" name="pName"  placeholder="Enter product name" ngModel #name="ngModel" required>
-                <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-                    Tittle is required !!
-                </div>
+                <input id="title" type="text" class="form-control" name="pName"  placeholder="Enter product name" [(ngModel)]="product.pName" required>
+                
             </div>
             <div class="form-group">
                 <label for="category">Product Category</label>
-                <select id="category" type="text" class="form-control" name="pCategory"  placeholder="Enter product category" ngModel #category="ngModel" required>
+                <select id="category" type="text" class="form-control" name="pCategory"  placeholder="Enter product category" [(ngModel)]="product.pCategory" required>
                     <option value=""></option>  
                     <option *ngFor="let c of categories; let i = index" [value]="c.id">
                         {{c.name}}
                     </option>
                 </select> 
-                <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
-                        Category is required !!
-                </div>
+                
             </div>
             <div class="form-group">
                 <label for="desc">Product Description</label>
-                <input id="desc" class="form-control" name="pDescription"  placeholder="Enter product description" ngModel #desc="ngModel" required>
-                <div class="alert alert-danger" *ngIf="desc.touched && desc.invalid">
-                        Description is required !!
-                    </div>
+                <input id="desc" class="form-control" name="pDescription"  placeholder="Enter product description" [(ngModel)]="product.pDescription"  required>
+                
             </div>
             <div class="form-group">
                 <label for="price">Product Price</label>
@@ -33,35 +27,31 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Rs.</span>
                     </div>
-                    <input id="price" type="number" class="form-control" name="pPrice"  placeholder="Enter product price" ngModel #price="ngModel" required>
+                    <input id="price" type="number" class="form-control" name="pPrice"  placeholder="Enter product price" [(ngModel)]="product.pPrice" required>
                 </div>
-                <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
-                    Price is required !!
-                </div>
+               
             </div>
             <div class="form-group">
                     <label for="qty">Product Quantity</label>
-                    <input id="qty" type="number" class="form-control" name="pQty"  placeholder="Enter product quantity" ngModel #qty="ngModel" required>
-                    <div class="alert alert-danger" *ngIf="qty.touched && qty.invalid">
-                        Tittle is required !!
-                    </div>
+                    <input id="qty" type="number" class="form-control" name="pQty"  placeholder="Enter product quantity" [(ngModel)]="product.pQty" required>
+                    
             </div>
             <div class="form-group">
                 <label for="pImg">Product Image</label>
-                    <input id="img" type="file" (change)="onImageSelect(img)" class="form-control-file" name="pImg" placeholder="Enter product image URL" ngModel #img="ngModel" required>
-                    <div class="alert alert-danger" *ngIf="img.touched && img.invalid">
-                        Product image is required !!
-                    </div>
+                    <input id="img" type="url" class="form-control" name="pImg" placeholder="Enter product image URL" [(ngModel)]="product.pImg" required>
+                    
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <button type="submit" form="addProdFrm" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+        <button class="btn btn-secondary ml-2" (click)="previewCard(f.value)">Preview</button>
+
     </div>
     <div class="col-7">
-        <div *ngIf="name.value" class="card" style="width : 20rem;">
-            <img class="card-img-top" [src]= "pImg.value">
+        <div *ngIf="preview" class="card" style="width : 20rem;">
+            <img class="card-img-top" [src]= "product.pImg">
             <div class="card-body">
-                <h4 class="card-title">{{name.value}}</h4>
-                <p *ngIf="price.value" class="card-text">{{price.value | currency : 'LKR'}}</p>
+                <h4 class="card-title">{{product.pName}}</h4>
+                <p class="card-text">{{product.pPrice | currency : 'LKR'}}</p>
             </div> 
         </div>
     </div>

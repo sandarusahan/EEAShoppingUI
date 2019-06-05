@@ -62,13 +62,13 @@
                 Address is required !!
             </div> -->
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
               <label for="profImg">Profile Image</label>
                   <input id="image" type="text" class="form-control" name="image" placeholder="Enter profile image URL" ngModel #image="ngModel">
-                  <!-- <div class="alert alert-danger" *ngIf="image.touched && image.invalid">
+                  <div class="alert alert-danger" *ngIf="image.touched && image.invalid">
                       Product image is required !!
-                  </div> -->
-          </div>
+                  </div>
+          </div> -->
           <button type="submit" [disabled]="form.invalid && isEmailExist" class="btn btn-primary">Register</button>
           <br>
           <div class="alert alert-danger" *ngIf="formInvalid">Form inpunts invalid</div>

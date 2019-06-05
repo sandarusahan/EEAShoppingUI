@@ -1,5 +1,5 @@
 import { Product } from './../Model/Product';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
@@ -12,7 +12,8 @@ export class ProductService {
 
   url = "http://localhost:8080/product/";
   // prod : Product = null;
-
+  email = sessionStorage.getItem("email")
+  password = sessionStorage.getItem("password")
   getProducts() {
     return this.http.get<Product[]>(this.url+"public/all");
   }
@@ -28,12 +29,14 @@ export class ProductService {
   }
 
   addProduct(product: Product) {
-    return this.http.post<Product>(this.url+"admin/add", product).
-            subscribe(product => {
-              console.log(product.pName + " sucessfully added")
-            },
-            err => {
-              console.log(product.pName + "Couldn't post"+ err)
-            });
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
+
+    return this.http.post<Product>(this.url+"auth/add", product, {headers});
+  }
+
+  deleteProduct(pid){
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
+
+    return this.http.delete(this.url+"auth/"+pid, {headers});
   }
 }

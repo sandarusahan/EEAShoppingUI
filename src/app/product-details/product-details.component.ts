@@ -4,7 +4,7 @@ import { ProductService } from './../Services/product.service';
 import { Product } from './../Model/Product';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class ProductDetailsComponent implements OnInit {
 
   cart : Cart = <Cart>{};
 
-  constructor(private route: ActivatedRoute, private prodcutService:ProductService, private cartService : CartService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private prodcutService:ProductService, private cartService : CartService) { }
 
   ngOnInit() {
 
@@ -35,14 +35,17 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product:Product) {
-    
-    let cart =<Cart> new Object();
-    cart.pid = product.pId;
-    cart.uid = "user 01";
-    cart.amount = 10;
-    cart.name = product.pName;
-    cart.price = product.pPrice;
-  
-    this.cartService.addToCart(cart);
+    let email = sessionStorage.getItem('email');
+    if(email == "no_user"){
+      this.router.navigate(['login'])
+    }else{
+      let cart =<Cart> new Object();
+      cart.product = product
+      cart.userEmail = email;
+      cart.amount = 1;
+      
+      this.cartService.addToCart(cart);
+    }
+   
   }
 }

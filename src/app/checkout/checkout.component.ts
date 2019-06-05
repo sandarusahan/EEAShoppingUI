@@ -27,7 +27,7 @@ export class CheckoutComponent implements OnInit {
 
   calcTotal() {
     for(let cartItem of this.cartList){
-      this.total = cartItem.amount*cartItem.price + this.total;
+      this.total = cartItem.amount*cartItem.product.pPrice + this.total;
     }
   }
 }

@@ -1,3 +1,4 @@
+import { Promotion } from "./Promotion";
 
 
 export interface Product {
@@ -8,5 +9,6 @@ export interface Product {
     pPrice: number;
     pQty:number;
     pImg:string;
+    promotion:Promotion
 
 }

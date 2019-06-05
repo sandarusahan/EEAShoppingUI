@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class CartComponent implements OnInit {
 
-  userId = "user 01"
+  userEmail = sessionStorage.getItem("email");
   cartItems : Cart[];
   total = 0
   constructor(private cartService : CartService) { }
@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
 
   calcTotal() {
     for(let cartItem of this.cartItems){
-      this.total = cartItem.amount*cartItem.price + this.total;
+      this.total = cartItem.amount*cartItem.product.pPrice + this.total;
     }
   }
 

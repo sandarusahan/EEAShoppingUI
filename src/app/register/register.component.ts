@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Role } from './../Model/Role';
 import { AuthService } from './../Services/auth.service';
 import { User } from './../Model/User';
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   isEmailValid : boolean = true;
   formInvalid : boolean;
-  constructor(private auth : AuthService) { }
+  constructor(private auth : AuthService, private router:Router) { }
   errMsg = ""
   ngOnInit() {
   }
@@ -34,7 +35,10 @@ export class RegisterComponent implements OnInit {
     }
     else{
       this.formInvalid = false
-      this.auth.RegisterUser(newUser).subscribe(res => console.log(res), err => console.log(err))
+      this.auth.RegisterUser(newUser).subscribe(res => {
+        console.log(res)
+        this.router.navigate(['login'])
+      }, err => console.log(err))
       
     }
     
