@@ -2,6 +2,7 @@ import { Cart } from './../Model/Cart';
 import { CartService } from './../Services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -10,18 +11,31 @@ import { Observable } from 'rxjs';
 })
 export class CartComponent implements OnInit {
 
+  validCheckout:boolean = false;
+
   userEmail = sessionStorage.getItem("email");
-  cartItems : Cart[];
+  cartItems : Cart[] = []
   total = 0
-  constructor(private cartService : CartService) { }
+  email = sessionStorage.getItem("email")
+  constructor(private cartService : CartService, private router:Router) { }
 
   ngOnInit() {
-    this.cartService.getCartItems().subscribe(cartItems => {
-      this.cartItems = cartItems
-      // this.cartItems = (this.userId) ? this.products.filter(p=>p.pName.toLowerCase().includes(query.toLowerCase()) || p.pDescription.toLowerCase().includes(query.toLowerCase())) : this.products;
 
-      this.calcTotal();
-    })
+    if(this.email == "no_user"){
+      this.router.navigate(['login'])
+    }else{
+      this.cartService.getCartItems().subscribe(cartItems => {
+        this.cartItems = cartItems
+        if(this.cartItems.length<1){
+          this.validCheckout = false;
+        }else{
+          this.validCheckout = true;
+        }
+        // this.cartItems = (this.userId) ? this.products.filter(p=>p.pName.toLowerCase().includes(query.toLowerCase()) || p.pDescription.toLowerCase().includes(query.toLowerCase())) : this.products;
+
+        this.calcTotal();
+      })
+    }
     
   }
 

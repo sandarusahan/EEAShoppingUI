@@ -1,3 +1,5 @@
+import { ViewOrdersItemsComponent } from './view-orders-items/view-orders-items.component';
+import { ViewOrdersComponent } from './view-orders/view-orders.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
@@ -15,11 +17,13 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   // {path: 'admin/products/new', component: AddProductsComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'cart', component: CartComponent},
   {path: 'cart/checkout', component: CheckoutComponent},
-  {path: 'my/orders', component: MyOrdersComponent},
+  {path: 'myorders', component: ViewOrdersComponent},
+  {path: 'myorders/:orderid', component: ViewOrdersItemsComponent},
   {path: 'order-sucess', component: OrderSucessComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin/orders', component: AdminOrdersComponent},

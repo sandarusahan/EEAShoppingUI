@@ -25,8 +25,10 @@ export class NavbarComponent implements OnInit {
   logout(){
     sessionStorage.clear();
     sessionStorage.setItem('email', 'no_user')
-    this.router.navigate(['home'])
+    this.router.navigate(['home']).then(()=>{
     location.reload();
+      
+    })
     console.log("User logged out");
   }
 

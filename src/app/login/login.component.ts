@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("email", user.email)
         sessionStorage.setItem("password", user.password)
         this.authService.authenticated = true;
-        this.router.navigate(["home"]);
-        location.reload();
+        this.router.navigate(["home"]).then(()=>{
+            location.reload();
+        });
 
       }else{
         console.log("login failed")

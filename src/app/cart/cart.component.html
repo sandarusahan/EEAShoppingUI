@@ -3,7 +3,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Product Name</th>
-      <th scope="col">Quatity</th>
+      <th scope="col">Quantity</th>
       <th scope="col">Unit Price</th>
       <th scope="col">Total Price</th>
       <th scope="col"></th>
@@ -24,5 +24,5 @@
 </table>
 
 <div class="container">
-<button class="btn btn-primary btn-lg btn-block" routerLink="checkout" id="checkoutbtn">Checkout : LKR {{total}}</button>
+<button class="btn btn-primary btn-lg btn-block" routerLink="checkout" id="checkoutbtn" [disabled]="!validCheckout">Checkout : LKR {{total}}</button>
 </div>

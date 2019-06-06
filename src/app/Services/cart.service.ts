@@ -15,6 +15,7 @@ export class CartService {
   password = sessionStorage.getItem("password")
 
   getCartItems() {
+    
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
     return this.http.get<Cart[]>(this.url + "uid/"+ this.email , {headers}) //filter from user
 
@@ -32,6 +33,12 @@ export class CartService {
     item.amount = item.amount + qty;
     console.log(item)
     return this.http.put<Cart>(this.url, item, {headers}).subscribe(item => console.log(item.amount))
+  }
+
+  deleteCartItemsByUser(email : string) {
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(this.email + ':' + this.password)});
+
+    return this.http.delete(this.url + "user/" + email, {headers});
   }
 
   deleteCartItem(id: string) {
